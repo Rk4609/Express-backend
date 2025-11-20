@@ -1,0 +1,15 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "description": "backend",
+  "keywords": [
+    "javascript"
+  ],
+  "license": "ISC",
+  "author": "Rakesh jangid",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
