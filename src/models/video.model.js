@@ -22,24 +22,23 @@ const videoSchema = new Schema(
       type: Number,
       required: true,
     },
-    views:{
-        type:Number,
-        default:0
+    views: {
+      type: Number,
+      default: 0,
     },
-    isPublished:{
-        type:Boolean,
-        default:true
+    isPublished: {
+      type: Boolean,
+      default: true,
     },
-    owner:{
-        type:Schema.Types.ObjectId,
-        ref:"User"
-    }
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
   {
     timestamps: true,
   }
 );
 
-
-videoSchema.plugin(mongooseAggregatePaginate)
+videoSchema.plugin(mongooseAggregatePaginate);
 export const Video = mongoose.model("Video", videoSchema);
