@@ -14,11 +14,13 @@ app.use(
       "http://localhost:3000",
       "http://localhost:3001",
     ],
-    credentials: true
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
   })
 )
 
-
+// app.options("*", cors())
 app.use(express.json({limit:"16kb"}))
 
 app.use(express.urlencoded({extended:true,limit:"16kb"}))
