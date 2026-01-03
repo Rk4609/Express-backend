@@ -7,7 +7,7 @@ export const verifyAdminJWT = asyncHandler(async (req, _, next) => {
   try {
     const token =
       req.cookies?.accessToken ||
-      req.header("authorization")?.replace("bearer ", "");
+      req.header("authorization")?.replace("Bearer ", "");
 
     if (!token) {
       throw new ApiError(402, "Unauthorized request");
@@ -20,7 +20,7 @@ export const verifyAdminJWT = asyncHandler(async (req, _, next) => {
     );
 
     if (!admin) {
-      throw new ApiError(401, "Inavalid Access Token");
+      throw new ApiError(401, "Invalid Access Token");
     }
 
     req.admin = admin;
