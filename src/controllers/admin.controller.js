@@ -89,18 +89,20 @@ const loginAdmin = asyncHandler(async (req, res) => {
   //accress and refreshToken
   //send cookie
 
-  const { email, password } = req.body;
+  const { identifier, password } = req.body;
 
   // if (!email) {
   //   throw new ApiError(400, " Email are required");
   // }
-  if (!email || !password) {
+  if (!identifier || !password) {
   throw new ApiError(400, "Email and password are required");
 }
 
 
   const admin = await Admin.findOne({
-    $or: [{ email }],
+    $or: [{ email : identifier},
+      {username : identifier}
+    ],
   });
 
   if (!admin) {
