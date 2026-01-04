@@ -95,7 +95,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
   //   throw new ApiError(400, " Email are required");
   // }
   if (!identifier || !password) {
-  throw new ApiError(400, "Email and password are required");
+  throw new ApiError(400, "Email/Username and password are required");
 }
 
 
@@ -106,13 +106,13 @@ const loginAdmin = asyncHandler(async (req, res) => {
   });
 
   if (!admin) {
-    throw new ApiError(404, "admin not exist");
+    throw new ApiError(404, "Invalid email/username or password");
   }
 
   const isPasswordValid = await admin.isPasswordCorrect(password);
 
   if (!isPasswordValid) {
-    throw new ApiError(401, " Inavlid admin Credentials");
+    throw new ApiError(401, " Invalid email/username or password");
   }
 
   const { accessToken, refreshToken } = await generateAccessandRefreshToken(
@@ -141,7 +141,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
           accessToken,
           refreshToken,
         },
-        "Admin loggedIn Successfully"
+        "Admin logged in Successfully"
       )
     );
 });
