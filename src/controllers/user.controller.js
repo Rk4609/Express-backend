@@ -4,7 +4,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
-import mongoose from "mongoose";
+import mongoose from "mongoose";          
 // import { use } from "react";
 
 //login for accessToken and refreshToken method
@@ -25,6 +25,7 @@ const generateAccessandRefreshToken = async (userId) => {
     user.refreshToken = refreshToken;
     await user.save({ validateBeforeSave: false });
     return { accessToken, refreshToken };
+    
   } catch (error) {
     throw new ApiError(
       500,
@@ -195,9 +196,9 @@ const logoutUser = asyncHandler(async (req, res) => {
 });
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
-  const incomingRefreshToken = req.cookie.refreshToken || req.body.refreshToken;
+  const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken;
 
-  if (!refreshAccessToken) {
+  if (!incomingRefreshToken) {
     throw new ApiError(401, "Unauthorized request");
   }
 
